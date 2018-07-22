@@ -1,0 +1,41 @@
+---
+title: "Tidy Data"
+author: "Rafael Lopez"
+date: "7/21/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Synopsis 
+The purpose of this project is to collect data and clean the data set in order to do the analysis of the data. The required criteria 
+
+1. Tidy data set. 
+2. link to a Github repository with the script that perform the analysis.
+3. A code book that describe the variables, merging and transformation of the data called Codebook.md.
+
+## Data 
+The data collected is from the link below
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The link contains 3 different type of data for training and test sets:
+
+- x: rows of feature measurements
+- y: the activity labels corresponding to each row of X. Encoded as numbers.
+- subject: the subjects on which each row of X was measured. Encoded as numbers.
+
+furthermore we need to look at the features located in the files "Features.txt" and activity names located in "activity_labels.txt"
+
+## Data load
+The "y_train.txt","X_train.txt","subject_train.txt" is where the data is loaded from each training and test sets.
+
+## Tidying the data 
+The only columns that are needed from X is the `mean()`,and `std()` columns. The columns can be found using the feature names that is located in "Feature.txt". When the table "X_train.txt" is read into R, the column names are assigned as the features found in "Feature.txt".
+
+The column names were modified using `gsub()` and `sub()` to make the column names readable. 
+
+Activity and subject information were added as columns to the main data frame. Then train and test were combined.
+
+`dplyr` was used to summarize to extract the mean by activity and subject to comply with the project requirements.
